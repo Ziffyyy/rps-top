@@ -43,5 +43,22 @@ function playRound(userChoice, computerChoice) {
     }
 }
 //Make a function that repeats the last one five times and returns a winner
-
+function game() {
+    for (let i = 0; i<5; i++) {
+        playRound(userChoice,computerChoice);
+    }
+    console.log(winner())
+function winner() {
+    if (userScore === computerScore) {
+        alert('Nobody wins!')
+        return 'Tie game.'
+    } else if (userScore > computerScore) {
+        alert('You won it all!')
+        return 'You win.'
+    } else {
+        alert('You lose! lol')
+        return 'Loser.'
+    }
+}
+}
 
