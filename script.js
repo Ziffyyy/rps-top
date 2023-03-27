@@ -2,9 +2,9 @@
 const possibleValues = ['rock', 'paper', 'scissors'];
 //Make the computerChoice, userChoice, userScore and computerScore variables
 let userChoice;
-let userScore;
+let userScore = 0;
 let computerChoice;
-let computerScore;
+let computerScore = 0;
 
 //Make the function that gets the computer choice
 function getComputerChoice() {
@@ -26,7 +26,22 @@ function getUserChoice() {
     }
 }
 //Make the function that takes the previous returns and compares them to get a winner
-
+function playRound(userChoice, computerChoice) {
+    userChoice = getUserChoice();
+    computerChoice = getComputerChoice();
+    if (userChoice === computerChoice) {
+        alert('It\'s a tie!');
+        return `Your score is: ${userScore}\n The machine score is: ${computerScore}.`;
+    } else if (userChoice === 'rock' && computerChoice === 'scissors' ||
+    userChoice === 'paper' && computerChoice === 'rock' ||
+    userChoice === 'scissors' && computerChoice === 'paper') {
+        alert('You won this round!')
+        return `Your score is: ${++userScore}\n The machine score is: ${computerScore}.`;
+    } else {
+        alert('The machine takes this one.')
+        return `Your score is: ${userScore}\n The machine score is: ${++computerScore}.`;
+    }
+}
 //Make a function that repeats the last one five times and returns a winner
 
 
