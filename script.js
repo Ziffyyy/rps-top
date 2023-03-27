@@ -13,7 +13,18 @@ function getComputerChoice() {
     return computerChoice;
 }
 //Make the function that gets the player choice
-
+function getUserChoice() {
+    userChoice = prompt('Rock, Paper or Scissors?').toLowerCase();
+    if (userChoice === 'rock' || 
+    userChoice === 'paper' || 
+    userChoice === 'scissors') {
+        return userChoice;
+    } else {
+        alert('That\'s not a valid choice');
+        getUserChoice();
+        return;
+    }
+}
 //Make the function that takes the previous returns and compares them to get a winner
 
 //Make a function that repeats the last one five times and returns a winner
