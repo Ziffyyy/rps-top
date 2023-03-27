@@ -51,14 +51,14 @@ function game() {
 function winner() {
     if (userScore === computerScore) {
         alert('Nobody wins!')
-        return 'Tie game.'
+        return `Tie game.\nYour score is: ${userScore}\nThe machine score is: ${computerScore}`;
     } else if (userScore > computerScore) {
         alert('You won it all!')
-        return 'You win.'
+        return `You win!\nYour score is: ${userScore}\nThe machine score is: ${computerScore}`;
     } else {
         alert('You lose! lol')
-        return 'Loser.'
+        return `Loser.\nYour score is: ${userScore}\nThe machine score is: ${computerScore}`;
     }
 }
 }
-
+game()
