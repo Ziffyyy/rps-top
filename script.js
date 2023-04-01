@@ -7,8 +7,13 @@ let userScore = 0;
 let computerChoice;
 let computerScore = 0;
 
-//Select all the buttons and assign them to the buttons variable
-const buttons = document.querySelectorAll('button');
+//Select all the playing buttons and assign them to the buttons variable, and take
+//the reset button and assign it to its variable
+const buttons = document.querySelectorAll('.choiceButton');
+const container = document.querySelector('#container');
+
+//Add an event listener to the reset button that resets all scores
+
 
 //Add an event listener to each button, and depending of the id of the button
 //pressed, return the playRound function with the corresponding value
@@ -20,6 +25,15 @@ buttons.forEach((button) => {
         updateScoreText();
         if(userScore === 5 || computerScore === 5) {
             alert(winner(userScore, computerScore));
+            const resetButton = document.createElement('button');
+            resetButton.textContent = "RESET";
+            resetButton.addEventListener('click', () => {
+                userScore = 0;
+                computerScore = 0;
+                resultContainer.textContent = `Click a button to start!`;
+                container.removeChild(resetButton);
+            })
+            container.appendChild(resetButton);
         }
     })
 })
