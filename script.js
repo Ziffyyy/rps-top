@@ -1,10 +1,37 @@
 //Make an array to get the computer choice
 const possibleValues = ['rock', 'paper', 'scissors'];
+
 //Make the computerChoice, userChoice, userScore and computerScore variables
 let userChoice;
 let userScore = 0;
 let computerChoice;
 let computerScore = 0;
+
+//Select all the buttons and assign them to the buttons variable
+const buttons = document.querySelectorAll('button');
+
+//Add an event listener to each button, and depending of the id of the button
+//pressed, return the playRound function with the corresponding value
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        userChoice = button.id;
+        computerChoice = getComputerChoice();
+        playRound(userChoice,computerChoice);
+        updateScoreText();
+        if(userScore === 5 || computerScore === 5) {
+            alert(winner(userScore, computerScore));
+        }
+    })
+})
+
+//Select the div that's gonna contain the results and assign it to the
+//resultContainer variable
+const resultContainer = document.querySelector('#results')
+
+//Make the text inside the results div change depending on the current score
+function updateScoreText() {
+    resultContainer.textContent = `Your score is: ${userScore}\n The machine score is: ${computerScore}.`;
+}
 
 //Make the function that gets the computer choice
 function getComputerChoice() {
@@ -12,47 +39,27 @@ function getComputerChoice() {
     let computerChoice = possibleValues[randomIndex];
     return computerChoice;
 }
-//Make the function that gets the player choice
-function getUserChoice() {
-    userChoice = prompt('Rock, Paper or Scissors?').toLowerCase();
-    if (userChoice === 'rock' || 
-    userChoice === 'paper' || 
-    userChoice === 'scissors') {
-        return userChoice;
-    } else {
-        alert('That\'s not a valid choice');
-        getUserChoice();
-        return;
-    }
-}
+
 //Make the function that takes the previous returns and compares them to get a winner
 function playRound(userChoice, computerChoice) {
-    userChoice = getUserChoice();
-    computerChoice = getComputerChoice();
-    if (userChoice === computerChoice) {
+    if (userScore === 5 || computerScore === 5) {
+        alert(winner(userScore, computerScore));
+    } else if (userChoice === computerChoice) {
         alert('It\'s a tie!');
-        return `Your score is: ${userScore}\n The machine score is: ${computerScore}.`;
     } else if (userChoice === 'rock' && computerChoice === 'scissors' ||
     userChoice === 'paper' && computerChoice === 'rock' ||
     userChoice === 'scissors' && computerChoice === 'paper') {
         alert('You won this round!')
-        return `Your score is: ${++userScore}\n The machine score is: ${computerScore}.`;
+        return userScore++;
     } else {
         alert('The machine takes this one.')
-        return `Your score is: ${userScore}\n The machine score is: ${++computerScore}.`;
+        return computerScore++;
     }
+
 }
-//Make a function that repeats the last one five times and returns a winner
-function game() {
-    for (let i = 0; i<5; i++) {
-        playRound(userChoice,computerChoice);
-    }
-    console.log(winner())
+
 function winner() {
-    if (userScore === computerScore) {
-        alert('Nobody wins!')
-        return `Tie game.\nYour score is: ${userScore}\nThe machine score is: ${computerScore}`;
-    } else if (userScore > computerScore) {
+    if (userScore > computerScore) {
         alert('You won it all!')
         return `You win!\nYour score is: ${userScore}\nThe machine score is: ${computerScore}`;
     } else {
@@ -60,5 +67,4 @@ function winner() {
         return `Loser.\nYour score is: ${userScore}\nThe machine score is: ${computerScore}`;
     }
 }
-}
-game()
+
