@@ -4,14 +4,28 @@
     <meta charset="UTF-8">
     <title>Rock Paper Scissors</title>
     <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <button id="rock" class="choiceButton">ROCK</button>
-    <button id="scissors" class="choiceButton">SCISSORS</button>
-    <button id="paper" class="choiceButton">PAPER</button>
-    
+    <div class="header-container">
+        <h1 class="header">Rock Paper Scissors</h1>
+    </div>
+    <div class="game-container">
+        <button id="rock" class="choiceButton">ROCK</button>
+        <button id="scissors" class="choiceButton">SCISSORS</button>
+        <button id="paper" class="choiceButton">PAPER</button>    
+    </div>
+
     <div id="container">
         <div id="results">Click a button to start!</div>
+    </div>
+    <div class="choices-displayer">
+        <div class="choices">
+            <img id="user-choice" src="">
+        </div>
+        <div class="choices">
+            <img id="computer-choice" src="">
+        </div>
     </div>
 </body>
 </html>
