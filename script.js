@@ -3,6 +3,8 @@ let userChoice;
 let userScore = 0;
 let computerChoice;
 let computerScore = 0;
+let isResetButtonAppended = false;
+let alreadyCalledWinner = false;
 const buttons = document.querySelectorAll('.choiceButton');
 const container = document.querySelector('#container');
 const resultContainer = document.querySelector('#results')
@@ -15,15 +17,19 @@ buttons.forEach((button) => {
         updateScoreText();
         if(userScore === 5 || computerScore === 5) {
             alert(winner(userScore, computerScore));
-            const resetButton = document.createElement('button');
-            resetButton.textContent = "RESET";
-            resetButton.addEventListener('click', () => {
-                userScore = 0;
-                computerScore = 0;
-                resultContainer.textContent = `Click a button to start!`;
-                container.removeChild(resetButton);
-            })
-            container.appendChild(resetButton);
+            if (!isResetButtonAppended) {
+                const resetButton = document.createElement('button');
+                resetButton.textContent = "RESET";
+                resetButton.addEventListener('click', () => {
+                    userScore = 0;
+                    computerScore = 0;
+                    resultContainer.textContent = `Click a button to start!`;
+                    container.removeChild(resetButton);
+                    isResetButtonAppended = false;
+                })
+                container.appendChild(resetButton);
+                isResetButtonAppended = true;
+            }
         }
     })
 })
@@ -40,7 +46,7 @@ function getComputerChoice() {
 
 function playRound(userChoice, computerChoice) {
     if (userScore === 5 || computerScore === 5) {
-        alert('PRESS RESTART TO PLAY AGAIN');
+        alert('The game has finished!');
     } else if (userChoice === computerChoice) {
         alert('It\'s a tie!');
     } else if (userChoice === 'rock' && computerChoice === 'scissors' ||
@@ -56,12 +62,19 @@ function playRound(userChoice, computerChoice) {
 }
 
 function winner() {
-    if (userScore > computerScore) {
-        alert('You won it all!')
-        return `You win!\nYour score is: ${userScore}\nThe machine score is: ${computerScore}`;
+    if (!alreadyCalledWinner) {
+        if (userScore > computerScore) {
+            alert('You won it all!')
+            alreadyCalledWinner = true;
+            return `You win!\nYour score is: ${userScore}\nThe machine score is: ${computerScore}`;
+        } else {
+            alert('You lose! lol')
+            alreadyCalledWinner = true;
+            return `Loser.\nYour score is: ${userScore}\nThe machine score is: ${computerScore}`;
+        }
     } else {
-        alert('You lose! lol')
-        return `Loser.\nYour score is: ${userScore}\nThe machine score is: ${computerScore}`;
+        return 'PRESS RESTART TO PLAY AGAIN'
     }
+
 }
 
