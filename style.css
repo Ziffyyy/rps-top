@@ -1,12 +1,12 @@
 body {
-    background-color: #ff7f50;
+    background-color: #3d3b3c;
     padding: 0;
     margin: 0;
     font-family: Verdana, 'sans-serif';
 }
 
 .header-container {
-    background-color: #5f5b6b;
+    background-color: #323031;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,8 +27,8 @@ body {
 }
 
 button {
-    border-radius: 10%;
-    border: 2px solid #3d3b3c;
+    border-radius: 12%;
+    border: 5px solid #323031;
     background-color: #5f5b6b;
     color: #ccd7c5;
     font-size: 32px;
@@ -56,4 +56,9 @@ button {
     display: flex;
     flex-basis: 164px;
     margin: 24px;
+}
+
+.reset-container {
+    display: flex;
+    justify-content: center;
 }

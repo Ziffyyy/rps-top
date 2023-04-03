@@ -8,7 +8,7 @@ let isResetButtonAppended = false;
 let alreadyCalledWinner = false;
 
 const buttons = document.querySelectorAll('.choiceButton');
-const container = document.querySelector('#container');
+const container = document.querySelector('.reset-container');
 const resultContainer = document.querySelector('#results');
 const userChoiceDisplay = document.querySelector('#user-choice');
 const computerChoiceDisplay = document.querySelector('#computer-choice');
@@ -32,6 +32,7 @@ buttons.forEach((button) => {
                     resultContainer.textContent = `Click a button to start!`;
                     container.removeChild(resetButton);
                     isResetButtonAppended = false;
+                    alreadyCalledWinner = false;
                 })
                 container.appendChild(resetButton);
                 isResetButtonAppended = true;
@@ -89,6 +90,6 @@ function displayChoice(userChoice, computerChoice) {
     computerChoiceDisplay.src = `images/${computerChoice}.svg`;
     
     displayContainers.forEach((container) => {
-        container.style = 'border: 5px solid #3d3c3b';
+        container.style = 'border: 5px solid #323031';
     })
 }
